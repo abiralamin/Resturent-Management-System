@@ -13,8 +13,14 @@ let bodyParser = require("body-parser");
 const http = require("http");
 
 let db = require("./models/db_controller.js");
-let signup = require("./controller/signup.js");
-let login = require("./controller/login.js");
+let signup = require("./controllers/signup.js");
+let login = require("./controllers/login.js");
+let verify = require("./controllers/verify.js");
+let reset = require("./controllers/reset.js");
+let chef_controller = require("./controllers/chef_controller.js");
+let employee = require("./controllers/employee.js");
+let landing = require("./controllers/landing.js");
+let home = require("./controllers/home.js");
 
 let app = express();
 
@@ -33,5 +39,11 @@ server.listen(PORT, () => {
   console.log(`server running on port ${PORT}`);
 });
 
+app.use("/", landing);
 app.use("/signup", signup);
 app.use("/login", login);
+app.use("/verify", verify);
+app.use("/reset", reset);
+app.use("/home", home);
+app.use("/chefs", chef_controller);
+app.use("/employee", employee);
