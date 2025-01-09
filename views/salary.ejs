@@ -6,12 +6,8 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    <link
-      rel="shortcut icon"
-      type="image/x-icon"
-      href="/assets/img/favicon.ico"
-    />
-    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+
+    <title>Your Dianing</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet"
@@ -27,10 +23,6 @@
       href="/assets/css/font-awesome.min.css"
     />
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-    <!--[if lt IE 9]>
-      <script src="/assets/js/html5shiv.min.js"></script>
-      <script src="/assets/js/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -38,8 +30,8 @@
       <div class="header">
         <div class="header-left">
           <a href="/home" class="logo">
-            <img src="/assets/img/logo.png" width="35" height="35" alt="" />
-            <span>Preclinic</span>
+            <img src="/img/rms.png" width="35" height="35" alt="" />
+            <span>Your Dianing</span>
           </a>
         </div>
         <a id="toggle_btn" href="javascript:void(0);"
@@ -226,29 +218,47 @@
             <ul>
               <li class="menu-title">Main</li>
               <li class="active">
-                <a href="/home"
-                  ><i class="fa fa-dashboard"></i> <span>Dashboard</span></a
+                <a href="/home">
+                  <img
+                    class="rounded-circle"
+                    src="/rms/dashboard.jpg"
+                    width="25"
+                    alt="Admin"
+                  />
+                  <span>Dashboard</span></a
                 >
               </li>
               <li>
-                <a href="/doctors"
-                  ><i class="fa fa-user-md"></i> <span>Doctors</span></a
+                <a href="/chefs">
+                  <img
+                    class="rounded-circle"
+                    src="/rms/chef.png"
+                    width="25"
+                    alt="Admin"
+                  />
+                  <span>Chefs</span></a
                 >
               </li>
               <li>
-                <a href="/patients"
-                  ><i class="fa fa-wheelchair"></i> <span>Patients</span></a
+                <a href="/customess">
+                  <img
+                    class="rounded-circle"
+                    src="/rms/customer.jpg"
+                    width="25"
+                    alt="Admin"
+                  />
+                  <span>Customers</span></a
                 >
               </li>
               <li>
-                <a href="/appointment"
-                  ><i class="fa fa-calendar"></i> <span>Appointments</span></a
+                <a href="/order"
+                  ><i class="fa fa-calendar"></i> <span>Order</span></a
                 >
               </li>
 
               <li>
-                <a href="/home/departments"
-                  ><i class="fa fa-hospital-o"></i> <span>Departments</span></a
+                <a href="/home/catagory"
+                  ><i class="fa fa-hospital-o"></i> <span>Catagory</span></a
                 >
               </li>
               <li class="submenu">
@@ -285,7 +295,7 @@
 
               <li>
                 <a href="/store"
-                  ><i class="fa fa-cube"></i> <span>Medicine Store</span></a
+                  ><i class="fa fa-cube"></i> <span>Store</span></a
                 >
               </li>
             </ul>
@@ -357,12 +367,11 @@
                       <td><%= employee[i].contact %></td>
                       <td><%= employee[i].join_date %></td>
                       <td><%= employee[i].role %></td>
-
                       <td>$<%= employee[i].salary %></td>
                       <td>
                         <a
                           class="btn btn-sm btn-primary"
-                          href="/receipt/generateslip/<%= employee[0].id%>"
+                          href="/receipt/generateslip/<%= employee[i].id%>"
                           >Generate Slip</a
                         >
                       </td>
@@ -378,12 +387,12 @@
                           <div class="dropdown-menu dropdown-menu-right">
                             <a
                               class="dropdown-item"
-                              href="/employee/edit_employee/<%= employee[0].id %>"
+                              href="/employee/edit_employee/<%= employee[i].id %>"
                               ><i class="fa fa-pencil m-r-5"></i> Edit</a
                             >
                             <a
                               class="dropdown-item"
-                              href="/employee/delete_employee/<%= employee[0].id %>"
+                              href="/employee/delete_employee/<%= employee[i].id %>"
                               data-toggle="modal"
                               data-target="#delete_employee"
                               ><i class="fa fa-trash-o m-r-5"></i> Delete</a

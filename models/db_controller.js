@@ -83,7 +83,7 @@ module.exports.add_chef = function (
   biography,
   callback
 ) {
-  let query = `INSERT INTO  chef ( first_name , last_name , email , dob , gender , address , phone , image , catagory , biography )
+  let query = `INSERT INTO  chef (first_name, last_name, email, dob, gender, address, phone, image, catagory_name, biography)
                values ('${first_name}', '${last_name}', '${email}', '${dob}', '${gender}', '${address}', '${phone}', '${image}', '${catagory}', '${biography}')        
     `;
   con.query(query, callback);
@@ -115,7 +115,7 @@ module.exports.editChef = function (
   callback
 ) {
   let query = `update chef set
-     first_name='${first_name}', last_name='${last_name}', email='${email}', dob='${dob}', gender='${gender}', address='${address}', phone='${phone}', image='${image}', catagory='${catagory}', biography='${biography}'
+     first_name='${first_name}', last_name='${last_name}', email='${email}', dob='${dob}', gender='${gender}', address='${address}', phone='${phone}', image='${image}', catagory_name='${catagory}', biography='${biography}'
      where id=${id}`;
   con.query(query, callback);
   // console.log(query);
@@ -123,7 +123,7 @@ module.exports.editChef = function (
 
 module.exports.deleteChef = function (id, callback) {
   //console.log("i m here");
-  let query = `delete from doctor where id=${id}`;
+  let query = `delete from chef where id=${id}`;
   con.query(query, callback);
 };
 
@@ -144,7 +144,303 @@ module.exports.getleavebyid = function (id, callback) {
   con.query(query, callback);
 };
 
+module.exports.getAllLeave = function (callback) {
+  var query = "Select * from leaves";
+  con.query(query, callback);
+};
+
+module.exports.add_leave = function (
+  name,
+  id,
+  type,
+  from,
+  to,
+  reason,
+  callback
+) {
+  let query = `Insert into  leaves  ( employee , emp_id , leave_type , date_from , date_to , reason ) 
+               values ('${name}', '${id}','${type}','${from}','${to}','${reason}')
+    `;
+  console.log(query);
+  con.query(query, callback);
+};
+
 module.exports.deleteleave = function (id, callback) {
   var query = `delete  from leaves where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.getAllemployee = function (callback) {
+  var query = "select * from employee";
+  con.query(query, callback);
+};
+
+module.exports.add_employee = function (
+  name,
+  email,
+  contact,
+  join_date,
+  role,
+  salary,
+  callback
+) {
+  var query = `Insert into  employee (name, email, contact, join_date, role, salary)
+     values ('${name}', '${email}', '${contact}', '${join_date}', '${role}', '${salary}')
+    `;
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.searchEmp = function (key, callback) {
+  var query = `SELECT * from employee where name  like "%${key}%"`;
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.deleteEmp = function (id, callback) {
+  //console.log("i m here");
+  var query = `delete from employee where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.editEmp = function (
+  id,
+  name,
+  email,
+  contact,
+  salary,
+  join_date,
+  role,
+  callback
+) {
+  let query = `update employee set
+     name='${name}', email='${email}', contact='${contact}', salary='${salary}', join_date='${join_date}', role='${role}'
+     where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.getEmpbyId = function (id, callback) {
+  var query = `select * from employee where id =${id}`;
+  con.query(query, callback);
+};
+
+module.exports.edit_leave = function (
+  id,
+  name,
+  leave_type,
+  from,
+  to,
+  reason,
+  callback
+) {
+  var query = `update leaves set
+     employee='${name}', leave_type='${leave_type}', date_from='${from}', date_to='${to}', reason='${reason}'
+     where id=${id}
+    `;
+  con.query(query, callback);
+};
+
+module.exports.add_order = function (
+  customer_name,
+  catagory,
+  chef_name,
+  date,
+  time,
+  email,
+  phone,
+  callback
+) {
+  console.log(customer_name, catagory, chef_name, date, time, email, phone);
+  let query = `insert into \`order\` (customer_name, catagory_name, chef_name, date, time, email, phone)
+               values ('${customer_name}', '${catagory}', '${chef_name}', '${date}', '${time}', '${email}', '${phone}')`;
+  con.query(query, callback);
+};
+
+module.exports.getallorder = function (callback) {
+  let query = "select * from `order`";
+  con.query(query, callback);
+};
+
+module.exports.editorder = function (
+  id,
+  customer_name,
+  catagory,
+  chef_name,
+  date,
+  time,
+  email,
+  phone,
+  callback
+) {
+  var query = `update \`order\` set
+    customer_name='${customer_name}', catagory_name='${catagory}', chef_name='${chef_name}', date='${date}', time='${time}', email='${email}', phone='${phone}'
+    where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.deleteorder = function (id, callback) {
+  var query = `delete from \`order\` where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.getallitem = function (callback) {
+  var query = "select *from store order by id desc";
+  // console.log(query);
+  con.query(query, callback);
+};
+
+module.exports.addItem = function (
+  name,
+  m_date,
+  expire,
+  expire_end,
+  price,
+  quantity,
+  callback
+) {
+  var query = `Insert into store (name,m_date,expire,expire_end,price,quantity)
+     values('${name}', '${m_date}', '${expire}', '${expire_end}', '${price}', '${quantity}')
+    `;
+  console.log(query);
+  con.query(query, callback);
+};
+
+module.exports.getItembyId = function (id, callback) {
+  var query = `select * from store where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.edititem = function (
+  id,
+  name,
+  p_date,
+  expire,
+  e_date,
+  price,
+  quantity,
+  callback
+) {
+  let query = `update store set 
+      name= '${name}', m_date= '${p_date}', expire= '${expire}', expire_end= '${e_date}', price= '${price}', quantity= '${quantity}'
+      where id=${id}`;
+  // console.log(query);
+  con.query(query, callback);
+};
+
+module.exports.deleteitem = function (id, callback) {
+  //console.log("i m here");
+  var query = `delete from store where id=${id}`;
+  con.query(query, callback);
+};
+
+module.exports.searchitem = function (key, callback) {
+  var query = `SELECT  * from store where name like "%${key}%"`;
+  con.query(query, callback);
+};
+
+module.exports.postcomplain = function (
+  message,
+  name,
+  email,
+  subject,
+  callback
+) {
+  var query =
+    "insert into complain (message,name,email,subject) values ('" +
+    message +
+    "','" +
+    name +
+    "','" +
+    email +
+    "','" +
+    subject +
+    "')";
+  console.log(query);
+  con.query(query, callback);
+};
+
+module.exports.getcomplain = function (callback) {
+  var query = "select * from complain";
+  con.query(query, callback);
+};
+
+module.exports.checktoken = function (token, callback) {
+  var query = "select * from temp where token='" + token + "'";
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.setpassword = function (id, newpassword, callback) {
+  var query =
+    "update `users` set `password`='" + newpassword + "' where id=" + id;
+  con.query(query, callback);
+};
+
+module.exports.getuserdetails = function (username, callback) {
+  var query = "select * from users where username='" + username + "'";
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.add_ctg = function (name, desc, callback) {
+  var query =
+    "insert into catagory (catagory_name,catagory_desc) values ('" +
+    name +
+    "','" +
+    desc +
+    "')";
+  con.query(query, callback);
+};
+
+module.exports.getctgbyId = function (id, callback) {
+  var query = "select * from catagory where id=" + id;
+  con.query(query, callback);
+};
+
+module.exports.delete_catagory = function (id, callback) {
+  var query = "delete from catagory where id=" + id;
+  con.query(query, callback);
+};
+
+module.exports.edit_ctg = function (id, name, desc, callback) {
+  var query =
+    "update catagory set catagory_name='" +
+    name +
+    "',catagory_desc='" +
+    desc +
+    "' where id=" +
+    id;
+  con.query(query, callback);
+};
+
+module.exports.getuserdetails = function (username, callback) {
+  var query = "select * from users where username='" + username + "'";
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.edit_profile = function (
+  id,
+  username,
+  email,
+  password,
+  callback
+) {
+  var query =
+    "update users set username ='" +
+    username +
+    "', email = '" +
+    email +
+    "',password='" +
+    password +
+    "' where id=" +
+    id;
+  con.query(query, callback);
+  console.log(query);
+};
+
+module.exports.getorderbyid = function (id, callback) {
+  var query = "select * from `order` where id=" + id;
+  console.log(query);
   con.query(query, callback);
 };

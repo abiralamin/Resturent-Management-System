@@ -12,68 +12,72 @@ router.get("*", function (req, res, next) {
 });
 
 router.get("/", function (req, res) {
-  db.getAllDoc(function (err, result) {
-    db.getallappointment(function (err, result1) {
-      var total_doc = result.length;
-      var appointment = result1.length;
+  db.getAllChef(function (err1, result) {
+    let r1 = result;
+    db.getallorder(function (err2, result1) {
+      let r2 = result1;
+      console.log(r1);
+      console.log(r2);
+
+      let total_chef = r1.length;
+      let order = r2.length;
 
       res.render("home.ejs", {
-        doc: total_doc,
-        doclist: result,
-        appointment: appointment,
-        applist: result1,
+        t_chef: total_chef,
+        doclist: r1,
+        t_order: order,
+        applist: r2,
       });
     });
-    //console.log(result.length);
   });
 });
 
-router.get("/departments", function (req, res) {
-  db.getalldept(function (err, result) {
-    res.render("departments.ejs", { list: result });
+router.get("/catagory", function (req, res) {
+  db.getAllCtg(function (err, result) {
+    res.render("catagory.ejs", { list: result });
   });
 });
 
-router.get("/add_departments", function (req, res) {
-  res.render("add_departments.ejs");
+router.get("/add_catagory", function (req, res) {
+  res.render("add_catagory.ejs");
 });
 
-router.post("/add_departments", function (req, res) {
-  var name = req.body.dpt_name;
+router.post("/add_catagory", function (req, res) {
+  var name = req.body.ctg_name;
   var desc = req.body.desc;
-  db.add_dept(name, desc, function (err, result) {
-    res.redirect("/home/departments");
+  db.add_ctg(name, desc, function (err, result) {
+    res.redirect("/home/catagory");
   });
 });
 
-router.get("/delete_department/:id", function (req, res) {
+router.get("/delete_catagory/:id", function (req, res) {
   var id = req.params.id;
-  db.getdeptbyId(id, function (err, result) {
-    res.render("delete_department.ejs", { list: result });
+  db.getctgbyId(id, function (err, result) {
+    res.render("delete_catagory.ejs", { list: result });
   });
 });
 
-router.post("/delete_department/:id", function (req, res) {
+router.post("/delete_catagory/:id", function (req, res) {
   var id = req.params.id;
-  db.delete_department(id, function (err, result) {
-    res.redirect("/home/departments");
+  db.delete_catagory(id, function (err, result) {
+    res.redirect("/home/catagory");
   });
 });
 
-router.get("/edit_department/:id", function (req, res) {
+router.get("/edit_catagory/:id", function (req, res) {
   var id = req.params.id;
-  db.getdeptbyId(id, function (err, result) {
-    res.render("edit_department.ejs", { list: result });
+  db.getctgbyId(id, function (err, result) {
+    res.render("edit_catagory.ejs", { list: result });
   });
 });
 
-router.post("/edit_department/:id", function (req, res) {
-  db.edit_dept(
+router.post("/edit_catagory/:id", function (req, res) {
+  db.edit_ctg(
     req.params.id,
-    req.body.dpt_name,
+    req.body.ctg_name,
     req.body.desc,
     function (err, result) {
-      res.redirect("/home/departments");
+      res.redirect("/home/catagory");
     }
   );
 });
@@ -102,11 +106,10 @@ router.post("/profile", function (req, res) {
           if (result1) {
             res.send("profile edited successfully");
           }
-          if (!result1) {
-            res.send("old password did not match");
-          }
         }
       );
+    } else {
+      res.send("old password did not match");
     }
   });
 });

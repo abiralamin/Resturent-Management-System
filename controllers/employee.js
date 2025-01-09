@@ -107,6 +107,7 @@ router.post("/edit_employee/:id", function (req, res) {
     req.body.name,
     req.body.email,
     req.body.contact,
+    req.body.salary,
     req.body.date,
     req.body.role,
     function (err, result) {

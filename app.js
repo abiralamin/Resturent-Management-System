@@ -21,6 +21,13 @@ let chef_controller = require("./controllers/chef_controller.js");
 let employee = require("./controllers/employee.js");
 let landing = require("./controllers/landing.js");
 let home = require("./controllers/home.js");
+let order = require("./controllers/order.js");
+let store = require("./controllers/store.js");
+let receipt = require("./controllers/receipt.js");
+let copmlain = require("./controllers/complain.js");
+var set = require("./controllers/set_controller"); //1
+var logout = require("./controllers/logout"); //2
+var inbox = require("./controllers/inbox");
 
 let app = express();
 
@@ -44,6 +51,17 @@ app.use("/signup", signup);
 app.use("/login", login);
 app.use("/verify", verify);
 app.use("/reset", reset);
+app.use("/setpassword", set); //1
+app.use("/logout", logout); //2
+app.use("/inbox", inbox); //3
 app.use("/home", home);
 app.use("/chefs", chef_controller);
 app.use("/employee", employee);
+app.use("/order", order);
+app.use("/store", store);
+app.use("/receipt", receipt);
+app.use("/copmlain", copmlain);
+
+// app.get("/home/profile", (req, res) => {
+//   res.render("home1.ejs");
+// });

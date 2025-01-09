@@ -1,31 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
-    <link rel="shortcut icon" type="image/x-icon" href="/assets/img/favicon.ico">
-    <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+    <title>Your Dianing</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="/assets/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/font-awesome.min.css">
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css">
-    <!--[if lt IE 9]>
-		<script src="/assets/js/html5shiv.min.js"></script>
-		<script src="/assets/js/respond.min.js"></script>
-	<![endif]-->
 </head>
 
 <body>
-
-  
     <div class="main-wrapper">
         <div class="header">
 			<div class="header-left">
 				<a href="/home" class="logo">
-					<img src="/assets/img/logo.png" width="35" height="35" alt=""> <span>Preclinic</span>
+					<img src="/img/rms.png" width="35" height="35" alt=""> <span>Your Dianing</span>
 				</a>
 			</div>
 			<a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
@@ -134,75 +125,102 @@
         </div>
         <div class="sidebar" id="sidebar">
             <div class="sidebar-inner slimscroll">
-                <div id="sidebar-menu" class="sidebar-menu">
-                    <ul>
-                        <li class="menu-title">Main</li>
-                        <li >
-                            <a href="/home"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
-                        </li>
-						<li>
-                            <a href="/doctors"><i class="fa fa-user-md"></i> <span>Doctors</span></a>
-                        </li>
-                        <li>
-                            <a href="/patients"><i class="fa fa-wheelchair"></i> <span>Patients</span></a>
-                        </li>
-                        <li class="active">
-                            <a href="/appointment"><i class="fa fa-calendar"></i> <span>Appointments</span></a>
-                        </li>
-                       
-                        <li>
-                            <a href="/home/departments"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
-                        </li>
-						<li class="submenu">
-							<a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="/employee">Employees List</a></li>
-								<li><a href="/employee/leave">Leaves</a></li>
-								
-							</ul>
-						</li>
-						
-						<li class="submenu">
-							<a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
-							<ul style="display: none;">
-								<li><a href="/receipt"> Employee Salary </a></li>
-								
-							</ul>
-						</li>
-                       
-                        
-                        <li class="submenu">
-                            <a href="#"><i class="fa fa-envelope"></i> <span> Email</span> <span class="menu-arrow"></span></a>
-                            <ul style="display: none;">
-                                <li><a href="/compose">Compose Mail</a></li>
-                                <li><a href="/inbox">Inbox</a></li>
-                                
-                            </ul>
-                        </li>
-                       
-						<li>
-							<a href="/store"><i class="fa fa-cube"></i> <span>Medicine Store</span></a>
-						</li>
-						
-					
-                       
-                        
-                       
-                        
-                      
-                     
-                       
+              <div id="sidebar-menu" class="sidebar-menu">
+                <ul>
+                  <li class="menu-title">Main</li>
+                  <li class="active">
+                    <a href="/home">
+                      <img
+                        class="rounded-circle"
+                        src="/rms/dashboard.jpg"
+                        width="25"
+                        alt="Admin"
+                      />
+                      <span>Dashboard</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="/chefs">
+                      <img
+                        class="rounded-circle"
+                        src="/rms/chef.png"
+                        width="25"
+                        alt="Admin"
+                      />
+                      <span>Chefs</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="/customess">
+                      <img
+                        class="rounded-circle"
+                        src="/rms/customer.jpg"
+                        width="25"
+                        alt="Admin"
+                      />
+                      <span>Customers</span></a
+                    >
+                  </li>
+                  <li>
+                    <a href="/order"
+                      ><i class="fa fa-calendar"></i> <span>Order</span></a
+                    >
+                  </li>
+    
+                  <li>
+                    <a href="/home/catagory"
+                      ><i class="fa fa-hospital-o"></i> <span>Catagory</span></a
+                    >
+                  </li>
+                  <li class="submenu">
+                    <a href="#"
+                      ><i class="fa fa-user"></i> <span> Employees </span>
+                      <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li><a href="/employee">Employees List</a></li>
+                      <li><a href="/employee/leave">Leaves</a></li>
                     </ul>
-                </div>
+                  </li>
+    
+                  <li class="submenu">
+                    <a href="#"
+                      ><i class="fa fa-book"></i> <span> Payroll </span>
+                      <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li><a href="/receipt"> Employee Salary </a></li>
+                    </ul>
+                  </li>
+    
+                  <li class="submenu">
+                    <a href="#"
+                      ><i class="fa fa-envelope"></i> <span> Email</span>
+                      <span class="menu-arrow"></span
+                    ></a>
+                    <ul style="display: none">
+                      <li><a href="/compose">Compose Mail</a></li>
+                      <li><a href="/inbox">Inbox</a></li>
+                    </ul>
+                  </li>
+    
+                  <li>
+                    <a href="/store"
+                      ><i class="fa fa-cube"></i> <span>Store</span></a
+                    >
+                  </li>
+                </ul>
+              </div>
             </div>
-        </div>
+          </div>
+        <!-- jjjj -->
     </div>
 
     <div class="page-wrapper">
         <div class="content">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2">
-                    <h4 class="page-title">Delete Appointment</h4>
+                    <h4 class="page-title">Delete Order</h4>
                 </div>
             </div>
             <div class="row">
@@ -212,8 +230,8 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <% for (var i = 0; i < list.length; i++){ %>
-                                    <label>Patient Name </label>
-                                    <input class="form-control" type="text" name="p_name" value="<%= list[i].patient_name%>">
+                                    <label>Customer Name </label>
+                                    <input class="form-control" type="text" name="customer_name" value="<%= list[i].customer_name%>">
                                 </div>
                             </div>
                            
@@ -221,22 +239,18 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Department</label>
-                                    <select class="" name="department">
-                                        
-                                        <option value="Dentists">Dentists</option>
-                                        <option value="Neurology">Neurology</option>
-                                        <option value="Opthalmology">Opthalmology</option>
-                                        <option value="Orthopedics">Orthopedics</option>
-                                        <option value="Cancer Departmen">Cancer Department</option>
-                                        <option value="ENT Departmen">ENT Department</option>
+                                    <label>Catagory</label>
+                                    <select class="" name="catagory">
+                                      <option value="Cake">Cake</option>
+                                      <option value="Pizza">Pizza</option>
+                                      <option value="Pasta">Pasta</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Doctor Name</label>
-                                    <input type="text" name="d_name" id="" value="<%= list[i].doctor_name%>">
+                                    <label>Chef Name</label>
+                                    <input type="text" name="chef_name" id="" value="<%= list[i].chef_name%>">
                                 </div>
                             </div>
                         </div>
@@ -261,13 +275,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Patient Email</label>
+                                    <label>Customer Email</label>
                                     <input class="form-control" type="email" name="email" value="<%= list[i].email%>">
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label>Patient Phone Number</label>
+                                    <label>Customer Phone Number</label>
                                     <input class="form-control" type="text" name="phone" value="<%= list[i].phone%>">
                                 </div>
                             </div>
@@ -275,7 +289,7 @@
                         
                         <% } %>
                         <div class="m-t-20 text-center">
-                            <button class="btn btn-primary submit-btn">Delete Appointment</button>
+                            <button class="btn btn-primary submit-btn">Delete Order</button>
                         </div>
                     </form>
                 </div>

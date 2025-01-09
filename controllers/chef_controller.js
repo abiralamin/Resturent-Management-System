@@ -40,6 +40,8 @@ router.use(bodyParser.json());
 
 router.get("/add_chef", function (req, res) {
   db.getAllCtg(function (err, result) {
+    console.log(result);
+    console.log(result.length);
     res.render("add_chef.ejs", { list: result });
   });
 });
@@ -60,13 +62,14 @@ router.post("/add_chef", upload.single("image"), function (req, res) {
   if (db.add_chef) {
     console.log("1 chef inserted");
   }
-  res.redirect("add_chef");
+  res.redirect("/chefs");
 });
 
 router.get("/edit_chef/:id", function (req, res) {
   let id = req.params.id;
 
   db.getChefbyId(id, function (err, result) {
+    console.log(result[0]);
     res.render("edit_chef.ejs", { list: result });
   });
 });
@@ -88,7 +91,7 @@ router.post("/edit_chef/:id", function (req, res) {
     function (err, result) {
       if (err) throw err;
       //res.render('edit_chef.ejs',{list:result});
-      res.redirect("back");
+      res.redirect("/chefs");
     }
   );
 });
@@ -102,8 +105,8 @@ router.get("/delete_chef/:id", function (req, res) {
 
 router.post("/delete_chef/:id", function (req, res) {
   let id = req.params.id;
-  db.deleteDoc(id, function (err, result) {
-    res.redirect("/chef");
+  db.deleteChef(id, function (err, result) {
+    res.redirect("/chefs");
   });
 });
 

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    <link rel="shortcut icon" type="image/x-icon" href="img/rms.png" />
+    
     <title>Your Dianing</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -30,7 +30,7 @@
       <div class="header">
         <div class="header-left">
           <a href="/home" class="logo">
-            <img src="img/rms.png" width="35" height="35" alt="" />
+            <img src="/img/rms.png" width="35" height="35" alt="" />
             <span>Your Dianing</span>
           </a>
         </div>
@@ -41,6 +41,15 @@
           ><i class="fa fa-bars"></i
         ></a>
         <ul class="nav user-menu float-right">
+          <li class="nav-item dropdown d-none d-sm-block">
+            <a
+              href="javascript:void(0);"
+              id="open_msg_box"
+              class="hasnotifications nav-link"
+              ><i class="fa fa-comment-o"></i>
+              <span class="badge badge-pill bg-danger float-right">8</span></a
+            >
+          </li>
           <li class="nav-item dropdown has-arrow">
             <a
               href="#"
@@ -79,6 +88,7 @@
           <div class="dropdown-menu dropdown-menu-right">
             <a class="dropdown-item" href="/home/profile">My Profile</a>
             <a class="dropdown-item" href="/home/edit-profile">Edit Profile</a>
+
             <a class="dropdown-item" href="/logout">Logout</a>
           </div>
         </div>
@@ -173,138 +183,82 @@
           </div>
         </div>
       </div>
-      <!-- hh -->
       <div class="page-wrapper">
         <div class="content">
           <div class="row">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/chef.png"
-                    width="70"
-                    alt="Admin"
-                  />
-                  <!-- <i class="fa fa-stethoscope" aria-hidden="true"></i> -->
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3><%= t_chef %></h3>
-                  <span class="widget-title1"
-                    >Chef
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
+            <div class="col-sm-5 col-5">
+              <h4 class="page-title">Catagory</h4>
             </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg2"
-                  ><i class="fa fa-user-o"></i
-                ></span>
-                <div class="dash-widget-info text-right">
-                  <h3><%=t_order%></h3>
-                  <!-- 111111 -->
-                  <span class="widget-title2"
-                    >Order
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/attended.jpg"
-                    width="70"
-                    alt="Admin"
-                  />
-                  <!-- <i class="fa fa-user-md" aria-hidden="true"></i> -->
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3>72</h3>
-                  <span class="widget-title3"
-                    >Attend
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/pending.png"
-                    width="70"
-                    alt="Admin"
-                  />
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3>618</h3>
-                  <span class="widget-title4"
-                    >Pending <i class="fa fa-check" aria-hidden="true"></i
-                  ></span>
-                </div>
-              </div>
+            <div class="col-sm-7 col-7 text-right m-b-30">
+              <a
+                href="/home/add_catagory"
+                class="btn btn-primary btn-rounded"
+                ><i class="fa fa-plus"></i> Add Catagory</a
+              >
             </div>
           </div>
           <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="chart-title">
-                    <h4>Order Total</h4>
-                    <span class="float-right"
-                      ><i class="fa fa-caret-up" aria-hidden="true"></i> 15%
-                      Higher than Last Month</span
-                    >
-                  </div>
-                  <canvas id="linegraph"></canvas>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="chart-title">
-                    <h4>Catagory</h4>
-                    <div class="float-right">
-                      <ul class="chat-user-total">
-                        <li>
-                          <i
-                            class="fa fa-circle current-users"
-                            aria-hidden="true"
-                          ></i
-                          >Burger
-                        </li>
-                        <li>
-                          <i
-                            class="fa fa-circle old-users"
-                            aria-hidden="true"
-                          ></i>
-                          Pizza
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <canvas id="bargraph"></canvas>
-                </div>
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-striped custom-table mb-0 datatable">
+                  <thead>
+                    <tr>
+                      <th>#</th>
+                      <th>Catagory Name</th>
+                      <th>Catagory description</th>
+                      <th class="text-right">Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (var i = 0; i < list.length; i++){ %>
+                    <tr>
+                      <td><%= list[i].id%></td>
+                      <td><%= list[i].catagory_name%></td>
+                      <td><%= list[i].catagory_desc%></td>
+                      <td class="text-right">
+                        <div class="dropdown dropdown-action">
+                          <a
+                            href="#"
+                            class="action-icon dropdown-toggle"
+                            data-toggle="dropdown"
+                            aria-expanded="false"
+                            ><i class="fa fa-ellipsis-v"></i
+                          ></a>
+                          <div class="dropdown-menu dropdown-menu-right">
+                            <a
+                              class="dropdown-item"
+                              href="/home/edit_catagory/<%= list[i].id%>"
+                              ><i class="fa fa-pencil m-r-5"></i> Edit</a
+                            >
+                            <a
+                              class="dropdown-item"
+                              href="/home/delete_catagory/<%= list[i].id%>"
+                              ><i class="fa fa-trash-o m-r-5"></i> Delete</a
+                            >
+                          </div>
+                        </div>
+                      </td>
+                      <% } %>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
+
+        <!-- end -->
       </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
     <script src="/assets/js/jquery-3.2.1.min.js"></script>
     <script src="/assets/js/popper.min.js"></script>
     <script src="/assets/js/bootstrap.min.js"></script>
+    <script src="/assets/js/jquery.dataTables.min.js"></script>
+    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
     <script src="/assets/js/jquery.slimscroll.js"></script>
-    <script src="/assets/js/Chart.bundle.js"></script>
-    <script src="/assets/js/chart.js"></script>
     <script src="/assets/js/app.js"></script>
   </body>
+
+  <!-- departments23:21-->
 </html>

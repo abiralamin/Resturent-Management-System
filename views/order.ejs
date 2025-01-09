@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    
+   
     <title>Your Dianing</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -23,8 +23,6 @@
       href="/assets/css/font-awesome.min.css"
     />
     <link rel="stylesheet" type="text/css" href="/assets/css/style.css" />
-  
-      
   </head>
 
   <body>
@@ -308,65 +306,45 @@
         <div class="content">
           <div class="row">
             <div class="col-sm-4 col-3">
-              <h4 class="page-title">Employee</h4>
+              <h4 class="page-title">Order</h4>
             </div>
             <div class="col-sm-8 col-9 text-right m-b-20">
               <a
-                href="/employee/add"
-                class="btn btn-primary float-right btn-rounded"
-                ><i class="fa fa-plus"></i> Add Employee</a
+                href="/order/add_order"
+                class="btn btn btn-primary btn-rounded float-right"
+                ><i class="fa fa-plus"></i> Add Order</a
               >
             </div>
           </div>
-          <form action="" method="POST">
-            <div class="row filter-row">
-              <div class="col-sm-6 col-md-3">
-                <div class="form-group form-focus">
-                  <label class="focus-label">Employee Name / ID </label>
-                  <input
-                    type="text"
-                    class="form-control floating"
-                    name="search"
-                  />
-                </div>
-              </div>
-
-              <div class="col-sm-6 col-md-3">
-                <button
-                  formaction="/employee/search"
-                  class="btn btn-success btn-block"
-                >
-                  Search
-                </button>
-              </div>
-            </div>
-          </form>
-
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">
                 <table class="table table-striped custom-table">
                   <thead>
                     <tr>
-                      <th style="min-width: 100px">ID</th>
-                      <th>Employee Name</th>
-                      <th>Email</th>
-                      <th>Contact</th>
-                      <th style="min-width: 110px">Join Date</th>
-                      <th>Role</th>
+                      <th>ID</th>
+                      <th>Customer Name</th>
+                      <th>Catagory</th>
+                      <th>Chef Name</th>
+                      <th>Order Date</th>
+                      <th>Time</th>
+                      <th>Customer Email</th>
+                      <th>Customer Phone</th>
                       <th class="text-right">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <% for (var i = 0; i < employee.length; i++){ %>
-
+                    <% for (var i = 0; i < list.length; i++){ %>
                     <tr>
-                      <td><%= employee[i].id %></td>
-                      <td><%= employee[i].name %></td>
-                      <td><%= employee[i].email %></td>
-                      <td><%= employee[i].contact %></td>
-                      <td><%= employee[i].join_date %></td>
-                      <td><%= employee[i].role %></td>
+                      <td><%= list[i].id %></td>
+                      <td><%= list[i].customer_name %></td>
+                      <td><%= list[i].catagory_name %></td>
+                      <td><%= list[i].chef_name %></td>
+                      <td><%= list[i].date %></td>
+                      <td><%= list[i].time %></td>
+                      <td><%= list[i].email %></td>
+                      <td><%= list[i].phone %></td>
+
                       <td class="text-right">
                         <div class="dropdown dropdown-action">
                           <a
@@ -379,12 +357,12 @@
                           <div class="dropdown-menu dropdown-menu-right">
                             <a
                               class="dropdown-item"
-                              href="/employee/edit_employee/<%= employee[i].id %>"
+                              href="/order/edit_order/<%= list[i].id %>"
                               ><i class="fa fa-pencil m-r-5"></i> Edit</a
                             >
                             <a
                               class="dropdown-item"
-                              href="/employee/delete_employee/<%= employee[i].id %>"
+                              href="/order/delete_order/<%= list[i].id %>"
                               ><i class="fa fa-trash-o m-r-5"></i> Delete</a
                             >
                           </div>
@@ -646,44 +624,58 @@
             </div>
           </div>
         </div>
-      </div>
-      <div id="delete_employee" class="modal fade delete-modal" role="dialog">
-        <% for (var i = 0; i < employee.length; i++){ %>
-        <form
-          action="/employee/delete_employee/<%=employee[i].id%>"
-          method="post"
+        <div
+          id="delete_appointment"
+          class="modal fade delete-modal"
+          role="dialog"
         >
-          <% } %>
-          <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-              <div class="modal-body text-center">
-                <img src="/assets/img/sent.png" alt="" width="50" height="46" />
-                <h3>Are you sure want to delete this Employee?</h3>
-                <div class="m-t-20">
-                  <a href="#" class="btn btn-white" data-dismiss="modal"
-                    >Close</a
-                  >
-
-                  <button type="submit" class="btn btn-danger">Delete</button>
+          <% for (var i = 0; i < list.length; i++){ %>
+          <form
+            action="/appointment/delete_appointment/<%=list[i].id%>"
+            method="POST"
+          >
+            <% } %>
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-body text-center">
+                  <img
+                    src="assets/img/sent.png"
+                    alt=""
+                    width="50"
+                    height="46"
+                  />
+                  <h3>Are you sure want to delete this Appointment?</h3>
+                  <div class="m-t-20">
+                    <a href="#" class="btn btn-white" data-dismiss="modal"
+                      >Close</a
+                    >
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/jquery.dataTables.min.js"></script>
-    <script src="/assets/js/dataTables.bootstrap4.min.js"></script>
-    <script src="/assets/js/jquery.slimscroll.js"></script>
-    <script src="/assets/js/select2.min.js"></script>
-    <script src="/assets/js/moment.min.js"></script>
-    <script src="/assets/js/bootstrap-datetimepicker.min.js"></script>
-    <script src="/assets/js/app.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+      $(function () {
+        $("#datetimepicker3").datetimepicker({
+          format: "LT",
+        });
+        $("#datetimepicker4").datetimepicker({
+          format: "LT",
+        });
+      });
+    </script>
   </body>
 
-  <!-- employees23:22-->
+  <!-- appointments23:20-->
 </html>
