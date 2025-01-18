@@ -190,13 +190,21 @@
           <form action="" method="POST">
             <div class="col-sm-6 col-md-12">
               <div class="form-group form-focus">
-                <label class="focus-label" height=""></label>
+                <label class="focus-label" height="">Chef</label>
                 <input
                   type="text"
                   class="form-control floating"
                   name="search"
                   placeholder=""
                 />
+
+                <select name="search" id="cars" class="form-group form-focus">
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                  <!-- <option value="catagory">Catagory</option> -->
+                </select>
+
+                
 
                 <button
                   formaction="/chefs/search"
@@ -208,6 +216,7 @@
               </div>
             </div>
           </form>
+          <!--  -->
         </div>
         <div class="row">
           <div class="col-md-12">

@@ -6,7 +6,7 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-   
+
     <title>Your Dianing</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -316,6 +316,30 @@
               >
             </div>
           </div>
+
+          <form action="" method="POST">
+            <div class="col-sm-6 col-md-12">
+              <div class="form-group form-focus">
+                <select name="search" id="cars" class="form-group form-focus">
+                  <option value="asc">Search Catagory Wise In Ascending</option>
+                  <option value="desc">Search Catagory Wise In Descending</option>
+                  <!-- <option value="burger">Burger</option>
+                  <option value="pizza">Pizza</option>
+                  <option value="sushi">Sushi</option>
+                  <option value="momo">Momo</option> -->
+                </select>
+
+                <button
+                  formaction="/order/search"
+                  type="submit"
+                  class="btn btn-success"
+                >
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
+
           <div class="row">
             <div class="col-md-12">
               <div class="table-responsive">

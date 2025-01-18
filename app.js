@@ -25,9 +25,10 @@ let order = require("./controllers/order.js");
 let store = require("./controllers/store.js");
 let receipt = require("./controllers/receipt.js");
 let copmlain = require("./controllers/complain.js");
-var set = require("./controllers/set_controller"); //1
-var logout = require("./controllers/logout"); //2
-var inbox = require("./controllers/inbox");
+let set = require("./controllers/set_controller"); //1
+let logout = require("./controllers/logout"); //2
+let inbox = require("./controllers/inbox");
+let customers = require("./controllers/customers");
 
 let app = express();
 
@@ -61,6 +62,7 @@ app.use("/order", order);
 app.use("/store", store);
 app.use("/receipt", receipt);
 app.use("/copmlain", copmlain);
+app.use("/customers", customers);
 
 // app.get("/home/profile", (req, res) => {
 //   res.render("home1.ejs");

@@ -6,7 +6,6 @@
       name="viewport"
       content="width=device-width, initial-scale=1.0, user-scalable=0"
     />
-    <link rel="shortcut icon" type="image/x-icon" href="img/rms.png" />
     <title>Your Dianing</title>
     <link
       href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -30,7 +29,7 @@
       <div class="header">
         <div class="header-left">
           <a href="/home" class="logo">
-            <img src="img/rms.png" width="35" height="35" alt="" />
+            <img src="/img/rms.png" width="35" height="35" alt="" />
             <span>Your Dianing</span>
           </a>
         </div>
@@ -111,7 +110,7 @@
                 >
               </li>
               <li>
-                <a href="/customers">
+                <a href="/customess">
                   <img
                     class="rounded-circle"
                     src="/rms/customer.jpg"
@@ -173,125 +172,65 @@
           </div>
         </div>
       </div>
-      <!-- hh -->
       <div class="page-wrapper">
         <div class="content">
           <div class="row">
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/chef.png"
-                    width="70"
-                    alt="Admin"
-                  />
-                  <!-- <i class="fa fa-stethoscope" aria-hidden="true"></i> -->
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3><%= t_chef %></h3>
-                  <span class="widget-title1"
-                    >Chef
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
+            <div class="col-sm-4 col-3">
+              <h4 class="page-title">Order</h4>
             </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg2"
-                  ><i class="fa fa-user-o"></i
-                ></span>
-                <div class="dash-widget-info text-right">
-                  <h3><%=t_order%></h3>
-                  <!-- 111111 -->
-                  <span class="widget-title2"
-                    >Order
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/attended.jpg"
-                    width="70"
-                    alt="Admin"
-                  />
-                  <!-- <i class="fa fa-user-md" aria-hidden="true"></i> -->
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3>72</h3>
-                  <span class="widget-title3"
-                    >Attend
-                    <i class="fa fa-check" aria-hidden="true"></i>
-                  </span>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6 col-sm-6 col-lg-6 col-xl-3">
-              <div class="dash-widget">
-                <span class="dash-widget-bg4">
-                  <img
-                    class="rounded-circle"
-                    src="/rms/pending.png"
-                    width="70"
-                    alt="Admin"
-                  />
-                </span>
-                <div class="dash-widget-info text-right">
-                  <h3>618</h3>
-                  <span class="widget-title4"
-                    >Pending <i class="fa fa-check" aria-hidden="true"></i
-                  ></span>
-                </div>
-              </div>
+            <div class="col-sm-8 col-9 text-right m-b-20">
+              <a
+                href="/order/add_order"
+                class="btn btn btn-primary btn-rounded float-right"
+                ><i class="fa fa-plus"></i> Add Order</a
+              >
             </div>
           </div>
-          <div class="row">
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="chart-title">
-                    <h4>Order Total</h4>
-                    <span class="float-right"
-                      ><i class="fa fa-caret-up" aria-hidden="true"></i> 15%
-                      Higher than Last Month</span
-                    >
-                  </div>
-                  <canvas id="linegraph"></canvas>
-                </div>
+
+          <form action="" method="POST">
+            <div class="col-sm-6 col-md-12">
+              <div class="form-group form-focus">
+                <select name="search" id="cars" class="form-group form-focus">
+                    <option value="asc">Search Catagory Wise In Ascending</option>
+                    <option value="desc">Search Catagory Wise In Descending</option>
+                  <!-- <option value="burger">Burger</option>
+                  <option value="pizza">Pizza</option>
+                  <option value="sushi">Sushi</option>
+                  <option value="momo">Momo</option> -->
+                </select>
+
+                <button
+                  formaction="/order/search"
+                  type="submit"
+                  class="btn btn-success"
+                >
+                  Search
+                </button>
               </div>
             </div>
-            <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-              <div class="card">
-                <div class="card-body">
-                  <div class="chart-title">
-                    <h4>Catagory</h4>
-                    <div class="float-right">
-                      <ul class="chat-user-total">
-                        <li>
-                          <i
-                            class="fa fa-circle current-users"
-                            aria-hidden="true"
-                          ></i
-                          >Burger
-                        </li>
-                        <li>
-                          <i
-                            class="fa fa-circle old-users"
-                            aria-hidden="true"
-                          ></i>
-                          Pizza
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <canvas id="bargraph"></canvas>
-                </div>
+          </form>
+
+          <div class="row">
+            <div class="col-md-12">
+              <div class="table-responsive">
+                <table class="table table-striped custom-table">
+                  <thead>
+                    <tr>
+                      <!-- <th>ID</th> -->
+                      <th>Catagory</th>
+                      <th>Total</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <% for (var i = 0; i < list.length; i++){ %>
+                    <tr>
+                      <td><%= list[i].catagory_name %></td>
+                      <td><%= list[i].total %></td>
+
+                      <% } %>
+                    </tr>
+                  </tbody>
+                </table>
               </div>
             </div>
           </div>
@@ -299,12 +238,23 @@
       </div>
     </div>
     <div class="sidebar-overlay" data-reff=""></div>
-    <script src="/assets/js/jquery-3.2.1.min.js"></script>
-    <script src="/assets/js/popper.min.js"></script>
-    <script src="/assets/js/bootstrap.min.js"></script>
-    <script src="/assets/js/jquery.slimscroll.js"></script>
-    <script src="/assets/js/Chart.bundle.js"></script>
-    <script src="/assets/js/chart.js"></script>
-    <script src="/assets/js/app.js"></script>
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.js"></script>
+    <script src="assets/js/select2.min.js"></script>
+    <script src="assets/js/app.js"></script>
+    <script>
+      $(function () {
+        $("#datetimepicker3").datetimepicker({
+          format: "LT",
+        });
+        $("#datetimepicker4").datetimepicker({
+          format: "LT",
+        });
+      });
+    </script>
   </body>
+
+  <!-- appointments23:20-->
 </html>

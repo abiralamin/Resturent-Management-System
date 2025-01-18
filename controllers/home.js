@@ -16,8 +16,8 @@ router.get("/", function (req, res) {
     let r1 = result;
     db.getallorder(function (err2, result1) {
       let r2 = result1;
-      console.log(r1);
-      console.log(r2);
+      // console.log(r1);
+      // console.log(r2);
 
       let total_chef = r1.length;
       let order = r2.length;

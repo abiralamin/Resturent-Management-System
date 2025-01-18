@@ -86,6 +86,7 @@ router.post("/edit_chef/:id", function (req, res) {
     req.body.address,
     req.body.phone,
     req.body.image,
+    // req.file.filename,
     req.body.catagory,
     req.body.biography,
     function (err, result) {
@@ -134,11 +135,26 @@ router.get("/", function (req, res) {
 
 router.post("/search", function (req, res) {
   let key = req.body.search;
-  db.searchChef(key, function (err, result) {
-    console.log(result);
-
-    res.render("chef.ejs", { list: result });
-  });
+  // console.log(key);
+  if (key[0] === "") {
+    // res.send("jsjjs");
+    if (key[1] === "male") {
+      db.searchGenderWiseChef(key[1], function (err, result) {
+        res.render("chef.ejs", { list: result });
+      });
+    } else if (key[1] === "female") {
+      db.searchGenderWiseChef(key[1], function (err, result) {
+        res.render("chef.ejs", { list: result });
+      });
+    } else {
+      console.log("catagory");
+    }
+  } else {
+    db.searchChef(key[0], function (err, result) {
+      // console.log(result);
+      res.render("chef.ejs", { list: result });
+    });
+  }
 });
 
 module.exports = router;

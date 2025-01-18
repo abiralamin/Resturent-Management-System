@@ -78,4 +78,32 @@ router.post("/delete_order/:id", function (req, res) {
   });
 });
 
+router.post("/search", function (req, res) {
+  let key = req.body.search;
+  // console.log(key);
+  db.searchOrderCatagoryWise(key, function (err, result) {
+    res.render("orderCatagory.ejs", { list: result });
+  });
+
+  // if (key[0] === "") {
+  //   // res.send("jsjjs");
+  //   if (key[1] === "male") {
+  //     db.searchGenderWiseChef(key[1], function (err, result) {
+  //       res.render("chef.ejs", { list: result });
+  //     });
+  //   } else if (key[1] === "female") {
+  //     db.searchGenderWiseChef(key[1], function (err, result) {
+  //       res.render("chef.ejs", { list: result });
+  //     });
+  //   } else {
+  //     console.log("catagory");
+  //   }
+  // } else {
+  //   db.searchChef(key[0], function (err, result) {
+  //     // console.log(result);
+  //     res.render("chef.ejs", { list: result });
+  //   });
+  // }
+});
+
 module.exports = router;

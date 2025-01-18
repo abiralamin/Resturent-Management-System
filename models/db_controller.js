@@ -26,7 +26,7 @@ module.exports.signup = function (username, email, password, status, callback) {
       let q2 = `INSERT INTO users(username, email, password, email_status)
                 VALUES ('${username}', '${email}', '${password}', '${status}')`;
       con.query(q2, callback);
-      console.log(q2);
+      // console.log(q2);
     } else {
       console.log("error");
     }
@@ -50,7 +50,7 @@ module.exports.getuserid = function (email, callback) {
 module.exports.matchtoken = function (id, token, callback) {
   let query = `select * from verify where token= '${token}' and id='${id}'`;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.updateverify = function (email, email_status, callback) {
@@ -60,9 +60,9 @@ module.exports.updateverify = function (email, email_status, callback) {
 };
 
 module.exports.findOne = function (email, callback) {
-  var query = `select * from users where email='${email}'`;
+  let query = `select * from users where email='${email}'`;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.temp = function (id, email, token, callback) {
@@ -87,7 +87,7 @@ module.exports.add_chef = function (
                values ('${first_name}', '${last_name}', '${email}', '${dob}', '${gender}', '${address}', '${phone}', '${image}', '${catagory}', '${biography}')        
     `;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.getAllChef = function (callback) {
@@ -131,21 +131,35 @@ module.exports.searchChef = function (key, callback) {
   // let query = 'SELECT  * from chef where first_name like "%' + key + '%"';
   let query = `SELECT * FROM chef WHERE first_name LIKE "%${key}%"`;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
+};
+
+module.exports.searchGenderWiseChef = function (key, callback) {
+  // let query = 'SELECT  * from chef where first_name like "%' + key + '%"';
+  let query = `SELECT * FROM chef WHERE gender = '${key}'`;
+  con.query(query, callback);
+  // console.log(query);
+};
+
+module.exports.searchCatagoryWiseChef = function (key, callback) {
+  // let query = 'SELECT  * from chef where first_name like "%' + key + '%"';
+  let query = `SELECT * FROM chef WHERE gender = '${key}'`;
+  con.query(query, callback);
+  // console.log(query);
 };
 
 module.exports.getAllCtg = function (callback) {
-  var query = "select * from catagory";
+  let query = "select * from catagory";
   con.query(query, callback);
 };
 
 module.exports.getleavebyid = function (id, callback) {
-  var query = `select * from leaves where id=${id}`;
+  let query = `select * from leaves where id=${id}`;
   con.query(query, callback);
 };
 
 module.exports.getAllLeave = function (callback) {
-  var query = "Select * from leaves";
+  let query = "Select * from leaves";
   con.query(query, callback);
 };
 
@@ -161,17 +175,17 @@ module.exports.add_leave = function (
   let query = `Insert into  leaves  ( employee , emp_id , leave_type , date_from , date_to , reason ) 
                values ('${name}', '${id}','${type}','${from}','${to}','${reason}')
     `;
-  console.log(query);
+  // console.log(query);
   con.query(query, callback);
 };
 
 module.exports.deleteleave = function (id, callback) {
-  var query = `delete  from leaves where id=${id}`;
+  let query = `delete  from leaves where id=${id}`;
   con.query(query, callback);
 };
 
 module.exports.getAllemployee = function (callback) {
-  var query = "select * from employee";
+  let query = "select * from employee";
   con.query(query, callback);
 };
 
@@ -184,22 +198,44 @@ module.exports.add_employee = function (
   salary,
   callback
 ) {
-  var query = `Insert into  employee (name, email, contact, join_date, role, salary)
+  let query = `Insert into  employee (name, email, contact, join_date, role, salary)
      values ('${name}', '${email}', '${contact}', '${join_date}', '${role}', '${salary}')
     `;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.searchEmp = function (key, callback) {
-  var query = `SELECT * from employee where name  like "%${key}%"`;
+  let query = `SELECT * from employee where name  like "%${key}%"`;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
+};
+
+module.exports.searchSalary = function (key, callback) {
+  if (key === "max-salary") {
+    let query = `SELECT * 
+                 FROM employee
+                 WHERE salary = (SELECT MAX(salary) FROM employee)`;
+    con.query(query, callback);
+  } else if (key == "min-salary") {
+    let query = `SELECT * 
+                 FROM employee
+                 WHERE salary = (SELECT MIN(salary) FROM employee)`;
+    con.query(query, callback);
+  } else if (key == "order-by-max-salary") {
+    let query = `SELECT * FROM employee
+                 ORDER BY salary DESC`;
+    con.query(query, callback);
+  } else {
+    let query = `SELECT * FROM employee
+                 ORDER BY salary ASC`;
+    con.query(query, callback);
+  }
 };
 
 module.exports.deleteEmp = function (id, callback) {
   //console.log("i m here");
-  var query = `delete from employee where id=${id}`;
+  let query = `delete from employee where id=${id}`;
   con.query(query, callback);
 };
 
@@ -220,7 +256,7 @@ module.exports.editEmp = function (
 };
 
 module.exports.getEmpbyId = function (id, callback) {
-  var query = `select * from employee where id =${id}`;
+  let query = `select * from employee where id =${id}`;
   con.query(query, callback);
 };
 
@@ -233,7 +269,7 @@ module.exports.edit_leave = function (
   reason,
   callback
 ) {
-  var query = `update leaves set
+  let query = `update leaves set
      employee='${name}', leave_type='${leave_type}', date_from='${from}', date_to='${to}', reason='${reason}'
      where id=${id}
     `;
@@ -250,7 +286,7 @@ module.exports.add_order = function (
   phone,
   callback
 ) {
-  console.log(customer_name, catagory, chef_name, date, time, email, phone);
+  // console.log(customer_name, catagory, chef_name, date, time, email, phone);
   let query = `insert into \`order\` (customer_name, catagory_name, chef_name, date, time, email, phone)
                values ('${customer_name}', '${catagory}', '${chef_name}', '${date}', '${time}', '${email}', '${phone}')`;
   con.query(query, callback);
@@ -272,19 +308,19 @@ module.exports.editorder = function (
   phone,
   callback
 ) {
-  var query = `update \`order\` set
+  let query = `update \`order\` set
     customer_name='${customer_name}', catagory_name='${catagory}', chef_name='${chef_name}', date='${date}', time='${time}', email='${email}', phone='${phone}'
     where id=${id}`;
   con.query(query, callback);
 };
 
 module.exports.deleteorder = function (id, callback) {
-  var query = `delete from \`order\` where id=${id}`;
+  let query = `delete from \`order\` where id=${id}`;
   con.query(query, callback);
 };
 
 module.exports.getallitem = function (callback) {
-  var query = "select *from store order by id desc";
+  let query = "select * from store order by id desc";
   // console.log(query);
   con.query(query, callback);
 };
@@ -298,15 +334,15 @@ module.exports.addItem = function (
   quantity,
   callback
 ) {
-  var query = `Insert into store (name,m_date,expire,expire_end,price,quantity)
+  let query = `Insert into store (name,m_date,expire,expire_end,price,quantity)
      values('${name}', '${m_date}', '${expire}', '${expire_end}', '${price}', '${quantity}')
     `;
-  console.log(query);
   con.query(query, callback);
+  // console.log(query);
 };
 
 module.exports.getItembyId = function (id, callback) {
-  var query = `select * from store where id=${id}`;
+  let query = `select * from store where id=${id}`;
   con.query(query, callback);
 };
 
@@ -329,12 +365,12 @@ module.exports.edititem = function (
 
 module.exports.deleteitem = function (id, callback) {
   //console.log("i m here");
-  var query = `delete from store where id=${id}`;
+  let query = `delete from store where id=${id}`;
   con.query(query, callback);
 };
 
 module.exports.searchitem = function (key, callback) {
-  var query = `SELECT  * from store where name like "%${key}%"`;
+  let query = `SELECT * from store where name like "%${key}%"`;
   con.query(query, callback);
 };
 
@@ -345,7 +381,7 @@ module.exports.postcomplain = function (
   subject,
   callback
 ) {
-  var query =
+  let query =
     "insert into complain (message,name,email,subject) values ('" +
     message +
     "','" +
@@ -355,35 +391,36 @@ module.exports.postcomplain = function (
     "','" +
     subject +
     "')";
-  console.log(query);
+
   con.query(query, callback);
+  // console.log(query);
 };
 
 module.exports.getcomplain = function (callback) {
-  var query = "select * from complain";
+  let query = "select * from complain";
   con.query(query, callback);
 };
 
 module.exports.checktoken = function (token, callback) {
-  var query = "select * from temp where token='" + token + "'";
+  let query = "select * from temp where token='" + token + "'";
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.setpassword = function (id, newpassword, callback) {
-  var query =
+  let query =
     "update `users` set `password`='" + newpassword + "' where id=" + id;
   con.query(query, callback);
 };
 
 module.exports.getuserdetails = function (username, callback) {
-  var query = "select * from users where username='" + username + "'";
+  let query = "select * from users where username='" + username + "'";
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.add_ctg = function (name, desc, callback) {
-  var query =
+  let query =
     "insert into catagory (catagory_name,catagory_desc) values ('" +
     name +
     "','" +
@@ -393,17 +430,17 @@ module.exports.add_ctg = function (name, desc, callback) {
 };
 
 module.exports.getctgbyId = function (id, callback) {
-  var query = "select * from catagory where id=" + id;
+  let query = "select * from catagory where id=" + id;
   con.query(query, callback);
 };
 
 module.exports.delete_catagory = function (id, callback) {
-  var query = "delete from catagory where id=" + id;
+  let query = "delete from catagory where id=" + id;
   con.query(query, callback);
 };
 
 module.exports.edit_ctg = function (id, name, desc, callback) {
-  var query =
+  let query =
     "update catagory set catagory_name='" +
     name +
     "',catagory_desc='" +
@@ -414,9 +451,9 @@ module.exports.edit_ctg = function (id, name, desc, callback) {
 };
 
 module.exports.getuserdetails = function (username, callback) {
-  var query = "select * from users where username='" + username + "'";
+  let query = "select * from users where username='" + username + "'";
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.edit_profile = function (
@@ -426,7 +463,7 @@ module.exports.edit_profile = function (
   password,
   callback
 ) {
-  var query =
+  let query =
     "update users set username ='" +
     username +
     "', email = '" +
@@ -436,11 +473,25 @@ module.exports.edit_profile = function (
     "' where id=" +
     id;
   con.query(query, callback);
-  console.log(query);
+  // console.log(query);
 };
 
 module.exports.getorderbyid = function (id, callback) {
-  var query = "select * from `order` where id=" + id;
-  console.log(query);
+  let query = "select * from `order` where id=" + id;
+  // console.log(query);
+  con.query(query, callback);
+};
+
+module.exports.getAllCustomers = function (callback) {
+  let query = `SELECT customer_name, email, phone FROM \`order\``;
+  con.query(query, callback);
+};
+
+module.exports.searchOrderCatagoryWise = function (key, callback) {
+  let query = `SELECT catagory_name, COUNT(catagory_name) AS total
+               FROM \`order\`
+               GROUP BY catagory_name
+               ORDER BY COUNT(catagory_name) ${key}`;
+  // console.log(query);
   con.query(query, callback);
 };

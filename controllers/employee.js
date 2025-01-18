@@ -133,11 +133,17 @@ router.post("/delete_employee/:id", function (req, res) {
 
 router.post("/search", function (req, res) {
   let key = req.body.search;
-  db.searchEmp(key, function (err, result) {
-    console.log(result);
-
-    res.render("employee.ejs", { employee: result });
-  });
+  // console.log(key);
+  if (key[0]) {
+    db.searchEmp(key[0], function (err, result) {
+      res.render("employee.ejs", { employee: result });
+    });
+  } else {
+    // console.log(key[1]);
+    db.searchSalary(key[1], function (err, result) {
+      res.render("employee.ejs", { employee: result });
+    });
+  }
 });
 
 router.post(
